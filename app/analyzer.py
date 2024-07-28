@@ -10,6 +10,9 @@ def index():
         url = request.form['url']
         try:
             html = fetch_website_html(url)
+            if "HTTP error occurred" in html or "Access forbidden" in html:
+                return html  # Return the error message
+            
             meta_tags, images, links = extract_elements(html)
             report = generate_report(meta_tags, images, links)
             return render_template('report.html', report=report)
