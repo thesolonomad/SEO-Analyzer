@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SEO Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .strengths, .weaknesses {
+            margin: 10px 0;
+        }
+        .strength, .weakness {
+            margin: 5px 0;
+        }
+        .strength {
+            color: green;
+        }
+        .weakness {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>SEO Report</h1>
+
+    <div class="section">
+        <h2>Meta Tags</h2>
+        <div class="strengths">
+            <h3>Strengths:</h3>
+            <ul>
+            {% for item in report.meta.strengths %}
+                <li class="strength">{{ item }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+        <div class="weaknesses">
+            <h3>Weaknesses:</h3>
+            <ul>
+            {% for item in report.meta.weaknesses %}
+                <li class="weakness">{{ item }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Images</h2>
+        <div class="strengths">
+            <h3>Strengths:</h3>
+            <ul>
+            {% for item in report.images.strengths %}
+                <li class="strength">{{ item }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+        <div class="weaknesses">
+            <h3>Weaknesses:</h3>
+            <ul>
+            {% for item in report.images.weaknesses %}
+                <li class="weakness">{{ item }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Links</h2>
+        <div class="strengths">
+            <h3>Strengths:</h3>
+            <ul>
+            {% for item in report.links.strengths %}
+                <li class="strength">{{ item }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+        <div class="weaknesses">
+            <h3>Weaknesses:</h3>
+            <ul>
+            {% for item in report.links.weaknesses %}
+                <li class="weakness">{{ item }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
