@@ -27,69 +27,110 @@
         .weakness {
             color: red;
         }
+        .copy-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        #button-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>SEO Report</h1>
 
-    <div class="section">
-        <h2>Meta Tags</h2>
-        <div class="strengths">
-            <h3>Strengths:</h3>
-            <ul>
-            {% for item in report.meta.strengths %}
-                <li class="strength">{{ item }}</li>
-            {% endfor %}
-            </ul>
+    <div id="button-container">
+        <button class="copy-button" onclick="copyAndOpen()">Copy Text and Open Link</button>
+    </div>
+
+    <div id="report-content">
+        <div class="section">
+            <h2>Meta Tags</h2>
+            <div class="strengths">
+                <h3>Strengths:</h3>
+                <ul>
+                {% for item in report.meta.strengths %}
+                    <li class="strength">{{ item }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            <div class="weaknesses">
+                <h3>Weaknesses:</h3>
+                <ul>
+                {% for item in report.meta.weaknesses %}
+                    <li class="weakness">{{ item }}</li>
+                {% endfor %}
+                </ul>
+            </div>
         </div>
-        <div class="weaknesses">
-            <h3>Weaknesses:</h3>
-            <ul>
-            {% for item in report.meta.weaknesses %}
-                <li class="weakness">{{ item }}</li>
-            {% endfor %}
-            </ul>
+
+        <div class="section">
+            <h2>Images</h2>
+            <div class="strengths">
+                <h3>Strengths:</h3>
+                <ul>
+                {% for item in report.images.strengths %}
+                    <li class="strength">{{ item }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            <div class="weaknesses">
+                <h3>Weaknesses:</h3>
+                <ul>
+                {% for item in report.images.weaknesses %}
+                    <li class="weakness">{{ item }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Links</h2>
+            <div class="strengths">
+                <h3>Strengths:</h3>
+                <ul>
+                {% for item in report.links.strengths %}
+                    <li class="strength">{{ item }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            <div class="weaknesses">
+                <h3>Weaknesses:</h3>
+                <ul>
+                {% for item in report.links.weaknesses %}
+                    <li class="weakness">{{ item }}</li>
+                {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
 
-    <div class="section">
-        <h2>Images</h2>
-        <div class="strengths">
-            <h3>Strengths:</h3>
-            <ul>
-            {% for item in report.images.strengths %}
-                <li class="strength">{{ item }}</li>
-            {% endfor %}
-            </ul>
-        </div>
-        <div class="weaknesses">
-            <h3>Weaknesses:</h3>
-            <ul>
-            {% for item in report.images.weaknesses %}
-                <li class="weakness">{{ item }}</li>
-            {% endfor %}
-            </ul>
-        </div>
-    </div>
+    <script>
+        function copyAndOpen() {
+            // Collect all the report text
+            var reportText = document.getElementById('report-content').innerText;
+            
+            // Copy text to clipboard
+            navigator.clipboard.writeText(reportText).then(function() {
+                console.log('Text copied to clipboard');
+            }).catch(function(err) {
+                console.error('Could not copy text: ', err);
+            });
 
-    <div class="section">
-        <h2>Links</h2>
-        <div class="strengths">
-            <h3>Strengths:</h3>
-            <ul>
-            {% for item in report.links.strengths %}
-                <li class="strength">{{ item }}</li>
-            {% endfor %}
-            </ul>
-        </div>
-        <div class="weaknesses">
-            <h3>Weaknesses:</h3>
-            <ul>
-            {% for item in report.links.weaknesses %}
-                <li class="weakness">{{ item }}</li>
-            {% endfor %}
-            </ul>
-        </div>
-    </div>
+            // Open the specified link
+            window.open("https://chatgpt.com/g/g-AWJUBCZXF-seo-analyzer-assistant", "_blank");
+        }
+    </script>
 </body>
 </html>
